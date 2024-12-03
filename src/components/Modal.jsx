@@ -25,7 +25,7 @@ export function Modal({ isOpen, onClose, children }) {
 
     return (
         <div
-            className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50"
+            className="fixed backdrop-blur-sm inset-0 flex justify-center items-center bg-gray-400 bg-opacity-50 z-50"
             onClick={handleOverlayClick}
         >
             <div className="bg-white p-6 rounded-lg w-96">
