@@ -1,43 +1,92 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { menuItems } from "../MockData";
 
-export function PopupCatalog({ isOpen, onClose, catalogData }) {
-    if (!isOpen) return null;
+export function PopupCatalog({ onClose }) {
+    const [data, setData] = useState([]);
+    const [activeCategory, setActiveCategory] = useState(null);
+    const catalogRef = useRef(null);
+
+    useEffect(() => {
+        setData(menuItems);
+
+        const handleKeyDown = (event) => {
+            if (event.key === "Escape") {
+                onClose();
+            }
+        };
+
+        const handleClickOutside = (event) => {
+            if (catalogRef.current && !catalogRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        // Добавляем обработчики событий
+        document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            // Убираем обработчики событий
+            document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [onClose]);
+
+    const handleMouseEnterCategory = (index) => {
+        setActiveCategory(index);
+    };
+
+    const handleMouseLeaveCategory = () => {
+        setActiveCategory(null);
+    };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div
-                className="absolute inset-0"
-                onClick={onClose}
-            ></div>
-
-            <div className="bg-white rounded-lg shadow-lg max-w-lg w-full max-h-[80vh] overflow-y-auto relative z-10">
-                <div className="flex justify-between items-center p-4 border-b border-gray-200">
-                    <h2 className="text-xl font-semibold">Каталог</h2>
-                    <button
-                        onClick={onClose}
-                        className="text-gray-400 hover:text-gray-600 transition"
+        <div
+            ref={catalogRef}
+            className="relative p-2 bg-white text-gray-600 rounded-xl shadow-lg max-w-xs"
+        >
+            {/* Основной список категорий */}
+            <ul className="divide-y divide-gray-200">
+                {data.map((item, index) => (
+                    <li
+                        key={index}
+                        className="py-2 px-4 relative"
+                        onMouseEnter={() => handleMouseEnterCategory(index)}
                     >
-                        ✕
-                    </button>
-                </div>
-
-                <div className="p-4">
-                    {catalogData.map((category, index) => (
-                        <div key={index} className="mb-4">
-                            <h3 className="text-lg font-bold text-gray-800 mb-2">
-                                {category.name}
-                            </h3>
-                            <ul className="pl-4 list-disc">
-                                {category.subcategories.map((subcategory, subIndex) => (
-                                    <li key={subIndex} className="text-gray-600 hover:underline">
-                                        <a href={subcategory.link}>{subcategory.name}</a>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className="font-bold hover:underline cursor-pointer flex justify-between items-center">
+                            <a href={item.link} onClick={onClose}>
+                                {item.name}
+                            </a>
                         </div>
-                    ))}
+                    </li>
+                ))}
+            </ul>
+
+            {/* Окно с подкатегориями */}
+            {activeCategory !== null && data[activeCategory]?.subcategories && (
+                <div
+                    className="absolute left-3/4 top-0 mt-0 ml-2 bg-white shadow-lg rounded-lg p-2 w-48"
+                    onMouseEnter={() => setActiveCategory(activeCategory)}
+                    onMouseLeave={handleMouseLeaveCategory}
+                >
+                    <ul className="divide-y divide-gray-200">
+                        {data[activeCategory].subcategories.map((subcategory, subIndex) => (
+                            <li
+                                key={subIndex}
+                                className="py-2 px-4 hover:bg-gray-100 rounded-md cursor-pointer"
+                            >
+                                <a
+                                    href={subcategory.link}
+                                    className="text-md text-gray-600 hover:underline"
+                                    onClick={onClose}
+                                >
+                                    {subcategory.name}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

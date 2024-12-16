@@ -6,6 +6,8 @@ import { Footer } from "./components/Footer";
 import { MobileNav } from "./components/MobileNav" 
 
 import { HomePage } from './pages/HomePage';
+import { ProductPage } from './pages/ProductPage';
+import { Page404 } from './pages/404Page';
 
 export function App() {
 
@@ -16,6 +18,8 @@ export function App() {
                 <Router>
                     <Routes>
                         <Route path="/" element={<HomePage />} />
+                        <Route path="/product/:product_slug" element={<ProductPage />} />
+                        <Route path="*" element={<Page404 />} />
                     </Routes>
                 </Router>
             </main>

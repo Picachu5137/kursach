@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "./Modal";
 
-export function AuthModal({ isOpen, onClose }) {
+export function LoginModal({ isOpen, onClose }) {
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
 
@@ -45,4 +45,4 @@ export function AuthModal({ isOpen, onClose }) {
             </form>
         </Modal>
     );
-};
+}

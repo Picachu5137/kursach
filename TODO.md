@@ -10,5 +10,8 @@
 - [ ] separate blocks rendering
 - [ ] page rendering from separated blocks
 
+# ProductPage
+- [ ] finish is_available function
+
 # other
 - [ ] mobile menu

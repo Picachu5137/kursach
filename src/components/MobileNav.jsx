@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export function MobileNav () {
+export function MobileNav() {
     return (
         <>
         </>
