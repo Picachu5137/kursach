@@ -16,7 +16,12 @@ export function PopupCatalog({ onClose }) {
         };
 
         const handleClickOutside = (event) => {
-            if (catalogRef.current && !catalogRef.current.contains(event.target)) {
+            const button = document.querySelector(".bg-green-600");
+            if (
+                catalogRef.current &&
+                !catalogRef.current.contains(event.target) &&
+                !button.contains(event.target)
+            ) {
                 onClose();
             }
         };

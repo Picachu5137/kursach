@@ -92,78 +92,72 @@ export const bottomMenu = [
 ]
 
 
-export const popularProducts =
-{
-    "title": "Популярные растения",
-    "link": "/popular",
-    "items": [
+export const popularProducts = {
+    title: "Популярные товары",
+    items: [
         {
-            "name": "Кипарисовик Лавсона",
-            "price": 1000,
-            "is_available": true,
-            "link": "/product/123123123",
-            "props": {
-                "Срок отправки": "c 15.03.25",
-                "Стандарт поставки": "Горшок P9 (0.5 л)",
-                "Латинское название": "Chamaecyparis",
-                "Количество в упаковке штук": "1",
-                "Тип растения": "Кустарник"
-            }
+            product_id: 1,
+            name: "Подсолнух",
+            slug: "podsolnuh-96dff206366a26741b4c04310499492e",
+            quantity: 12,
+            price: 50,
+            is_available: true,
+            is_preorder: false,
+            category_name: "Растения Дейва",
+            images: ["/media/products/images/139f83d5eff8aaeefebc775a167a4012.webp"],
+            link: "/product/podsolnuh-96dff206366a26741b4c04310499492e",
         },
         {
-            "name": "Сосна обыкновенная",
-            "price": 1500,
-            "is_available": false,
-            "link": "/product/234234234",
-            "props": {
-                "Срок отправки": "c 20.04.25",
-                "Стандарт поставки": "Горшок P12 (1 л)",
-                "Латинское название": "Pinus sylvestris",
-                "Количество в упаковке штук": "1",
-                "Тип растения": "Дерево"
-            }
+            product_id: 2,
+            name: "Кактус",
+            slug: "kaktus-78bb36a9157348cbab8edc56fae5dbf8",
+            quantity: 5,
+            price: 120,
+            is_available: true,
+            is_preorder: false,
+            category_name: "Суккуленты",
+            images: [],
+            link: "/product/kaktus-78bb36a9157348cbab8edc56fae5dbf8",
         },
         {
-            "name": "Ель голубая",
-            "price": 2500,
-            "is_available": true,
-            "link": "/product/345345345",
-            "props": {
-                "Срок отправки": "c 01.05.25",
-                "Стандарт поставки": "Горшок C5 (5 л)",
-                "Латинское название": "Picea pungens",
-                "Количество в упаковке штук": "1",
-                "Тип растения": "Дерево"
-            }
+            product_id: 3,
+            name: "Орхидея",
+            slug: "orchidea-a1202346b4e8475f90c743cfb5cb174d",
+            quantity: 0,
+            price: 250,
+            is_available: false,
+            is_preorder: true,
+            category_name: "Цветы",
+            images: [],
+            link: "/product/orchidea-a1202346b4e8475f90c743cfb5cb174d",
         },
         {
-            "name": "Лаванда узколистная",
-            "price": 800,
-            "is_available": true,
-            "link": "/product/456456456",
-            "props": {
-                "Срок отправки": "c 10.05.25",
-                "Стандарт поставки": "Горшок P9 (0.5 л)",
-                "Латинское название": "Lavandula angustifolia",
-                "Количество в упаковке штук": "1",
-                "Тип растения": "Цветок"
-            }
+            product_id: 4,
+            name: "Мангровое дерево",
+            slug: "mangrove-0f99d6e431a24367b9c8f70a512ed657",
+            quantity: 8,
+            price: 300,
+            is_available: true,
+            is_preorder: false,
+            category_name: "Экзотические растения",
+            images: [],
+            link: "/product/mangrove-0f99d6e431a24367b9c8f70a512ed657",
         },
         {
-            "name": "Барбарис Тунберга",
-            "price": 1200,
-            "is_available": false,
-            "link": "/product/567567567",
-            "props": {
-                "Срок отправки": "c 25.05.25",
-                "Стандарт поставки": "Горшок P9 (0.5 л)",
-                "Латинское название": "Berberis thunbergii",
-                "Количество в упаковке штук": "1",
-                "Тип растения": "Кустарник"
-            }
-        }
+            product_id: 5,
+            name: "Бонсай",
+            slug: "bonsai-549c71b317f6450db9f6a714aa2d85ad",
+            quantity: 2,
+            price: 500,
+            is_available: true,
+            is_preorder: false,
+            category_name: "Декоративные деревья",
+            images: [],
+            link: "/product/bonsai-549c71b317f6450db9f6a714aa2d85ad",
+        },
     ],
-}
+};
+
 
 
 
@@ -241,33 +235,33 @@ export const catalogData = [
 export const menuItems = [
     {
         "name": "Семена овощей",
-        "link": "/vegetables_seeds",
+        "link": "/catalog/vegetables_seeds",
         "subcategories": [
             {
                 "name": "семена цветов",
-                "link": "/flowers_seeds"
+                "link": "/catalog/flowers_seeds"
             },
             {
                 "name": "семена уценка",
-                "link": "/seeds_discount"
+                "link": "/catalog/seeds_discount"
             }
         ]
     },
     {
         "name": "Розы",
-        "link": "/roses",
+        "link": "/catalog/roses",
         "subcategories": [
             {
                 "name": "роза английская",
-                "link": "/english_rose"
+                "link": "/catalog/english_rose"
             },
             {
                 "name": "семена уценка",
-                "link": "/japanese_rose"
+                "link": "/catalog/japanese_rose"
             },
             {
                 "name": "канадская роза",
-                "link": "/canadian_rose"
+                "link": "/catalog/canadian_rose"
             }
         ]
     },
@@ -285,3 +279,37 @@ export const searchResults = [
         "image": "/img/src/orchidey"
     }
 ];
+
+export const catalogPageItems = {
+    "count": 6,
+    "next": "http://localhost:8000/search/?limit=2&offset=4",
+    "previous": "http://localhost:8000/search/?limit=2",
+    "results": [
+        {
+            "product_id": 3,
+            "name": "тюльпан красный",
+            "slug": "tyulpan-krasnyij-fbd90b3801848b7b4cb04c882699e295",
+            "quantity": 123,
+            "price": 0,
+            "is_available": false,
+            "is_preorder": false,
+            "category_name": "тюльпаны",
+            "images": [],
+            "link": "/product/tyulpan-krasnyij-fbd90b3801848b7b4cb04c882699e295"
+        },
+        {
+            "product_id": 4,
+            "name": "подсолнух",
+            "slug": "podsolnuh-96dff206366a26741b4c04310499492e",
+            "quantity": 12,
+            "price": 50,
+            "is_available": true,
+            "is_preorder": false,
+            "category_name": "растения Дейва",
+            "images": [
+                "/media/products/images/139f83d5eff8aaeefebc775a167a4012.webp"
+            ],
+            "link": "/product/podsolnuh-96dff206366a26741b4c04310499492e"
+        }
+    ]
+}

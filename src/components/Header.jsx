@@ -74,11 +74,6 @@ export function Header({ toggleMobileMenu }) {
                     </div>
 
                     <SearchBar />
-                    {/* <input
-                        type="text"
-                        placeholder="Поиск"
-                        className="flex-grow mx-3 px-4 py-2 rounded-lg text-gray-800"
-                    /> */}
                 </div>
 
                 <div className="hidden md:flex items-center gap-4">
@@ -155,6 +150,11 @@ function SearchBar() {
     const inputRef = useRef(null);
     const resultsRef = useRef(null);
 
+    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+    const getImageUrl = (imagePath) =>
+        imagePath.startsWith("http") ? imagePath : `${API_BASE_URL}${imagePath}`;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (query.trim()) {
@@ -189,18 +189,15 @@ function SearchBar() {
         }
     };
 
-    // Функция для скрытия окна результатов, если клик был вне области поиска
     const handleClickOutside = (event) => {
-        // Проверяем, был ли клик внутри поля ввода или блока с результатами
         if (
             inputRef.current && !inputRef.current.contains(event.target) &&
             resultsRef.current && !resultsRef.current.contains(event.target)
         ) {
-            setFocused(false);  // Если клик был вне этих областей, скрываем окно
+            setFocused(false);
         }
     };
 
-    // Добавляем и удаляем обработчик события при монтировании/демонтировании компонента
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -239,21 +236,27 @@ function SearchBar() {
                             <div>
                                 <div className="px-4 py-2">
                                     {results.map((item) => (
-                                        <div key={item.id} className="mb-2">
+                                        <div key={item.product_id} className="mb-2">
                                             <a
                                                 href={item.link}
                                                 className="flex hover:bg-gray-100 p-2 rounded"
                                             >
                                                 <div className="mr-4">
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.name}
-                                                        className="w-12 h-12 object-cover"
-                                                    />
+                                                    {item.images && item.images.length > 0 ? (
+                                                        <img
+                                                            src={getImageUrl(item.images[0])}
+                                                            alt={item.name}
+                                                            className="w-12 h-12 object-cover rounded"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-12 h-12 bg-gray-200 flex items-center justify-center text-gray-500">
+                                                            Нет фото
+                                                        </div>
+                                                    )}
                                                 </div>
                                                 <div>
                                                     <p className="font-semibold">{item.name}</p>
-                                                    <p className="text-gray-500">{item.price}</p>
+                                                    <p className="text-gray-500">{item.price ? `${item.price} ₽` : "Цена не указана"}</p>
                                                 </div>
                                             </a>
                                         </div>
@@ -262,7 +265,7 @@ function SearchBar() {
                                 <div className="border-t pt-2 mt-2">
                                     <a
                                         href={`/search?q=${query}`}
-                                        className="block text-center bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+                                        className="block text-black text-center border-2 border-green-500 py-2 rounded hover:border-green-700"
                                     >
                                         Смотреть все результаты
                                     </a>
@@ -274,4 +277,4 @@ function SearchBar() {
             </form>
         </div>
     );
-}
+};

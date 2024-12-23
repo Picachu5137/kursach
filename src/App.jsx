@@ -7,6 +7,7 @@ import { MobileNav } from "./components/MobileNav"
 
 import { HomePage } from './pages/HomePage';
 import { ProductPage } from './pages/ProductPage';
+import { CatalogPage } from './pages/CatalogPage';
 import { Page404 } from './pages/404Page';
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/product/:product_slug" element={<ProductPage />} />
+                        <Route path="/catalog/:category_slug" element={<CatalogPage />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
                 </Router>

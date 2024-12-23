@@ -26,14 +26,15 @@ export function Footer() {
     return (
         <footer className="bg-gray-800 text-gray-200 p-6">
             <div className="max-w-screen-xl mx-auto flex flex-wrap">
-                <div className="flex flex-wrap flex-grow gap-8">
+                {/* Основные блоки меню */}
+                <div className="flex flex-wrap w-full md:w-3/4 gap-8">
                     {data.map((block, index) => (
                         <div
                             key={index}
-                            className="flex flex-col flex-1 min-w-[150px] border-b border-gray-700 pb-2 md:border-none md:pb-0"
+                            className="flex flex-col w-full md:w-1/4 border-b border-gray-700 pb-2 md:border-none md:pb-0"
                         >
                             <button
-                                className="text-lg font-semibold mb-2 flex items-center justify-between md:cursor-default"
+                                className="text-lg font-semibold mb-2 flex items-center justify-between w-full bg-transparent text-left"
                                 onClick={() => toggleBlock(index)}
                             >
                                 <span>{block.name}</span>
@@ -42,8 +43,9 @@ export function Footer() {
                                 </span>
                             </button>
                             <div
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedBlocks[index] ? "max-h-40" : "max-h-0"
-                                    } md:max-h-full`}
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                                    expandedBlocks[index] ? "max-h-40" : "max-h-0"
+                                } md:max-h-full`}
                             >
                                 {block.nested_links.map((nested_link, nestedIndex) => (
                                     <a
@@ -59,7 +61,8 @@ export function Footer() {
                     ))}
                 </div>
 
-                <div className="ml-auto flex flex-col items-start mt-8 md:mt-0">
+                {/* Статичный блок с соцсетями */}
+                <div className="w-full md:w-1/4 mt-8 md:mt-0 md:ml-auto flex flex-col items-start">
                     <div className="text-lg font-semibold mb-2">Нужна помощь?</div>
                     <p className="text-sm text-blue-400 mb-2">8 999 999 99 99</p>
                     <p className="text-sm mb-2">example@mail.com</p>
@@ -79,3 +82,4 @@ export function Footer() {
         </footer>
     );
 };
+
